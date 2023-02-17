@@ -30,26 +30,49 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
 
+  intl:
+  intl_utils:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
 
+  get_it:
+  flutter_svg:
+  dio:
+  logger:
+  pretty_dio_logger:
+  json_annotation:
+  flutter_easyloading:
+  equatable:
+  flutter_bloc:
+  retrofit:
+  shared_preferences:
+  cached_network_image:
+  freezed_annotation:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  build_runner: ^2.1.8
+  freezed:
+  json_serializable:
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
-
+  license_generator: ^1.0.3
+  retrofit_generator: ^4.2.0
+  dart_code_metrics: ^5.2.1
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
-
+analyzer:
+  errors:
+    invalid_annotation_target: ignore
 # The following section is specific to Flutter packages.
 flutter:
 
@@ -59,9 +82,10 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/icon/
+    - assets/image/
+    - assets/data/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -88,3 +112,8 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+flutter_intl:
+  enabled: true
+  class_name: S
+  arb_dir: lib/core/locale/l10n # Optional. Sets the directory of your ARB resource files. Provided value should be a valid path on your system. Default: lib/l10n
+  output_dir: lib/core/locale/generated # Optional. Sets the directory of generated localization files. Provided value should be a valid path on your system. Default: lib/generated
