@@ -1,6 +1,6 @@
 import 'package:base_project_bloc/core/utils/log_util.dart';
 
-enum FlavorType { dev, stag, pro }
+enum FlavorType { dev, stag, prod }
 
 class FlavorValues {
   FlavorValues({
@@ -24,7 +24,7 @@ class FlavorConfig {
     baseImgGuideUrl: '',
   );
 
-  static bool isProduction() => flavor == FlavorType.pro;
+  static bool isProduction() => flavor == FlavorType.prod;
 
   static bool isDevelopment() => flavor == FlavorType.dev;
 
@@ -54,7 +54,7 @@ void setFlavorStaging(String? baseUrl) {
 
 void setFlavorProduction(String? baseUrl) {
   logUtil.i('setFlavorProduction env');
-  FlavorConfig.flavor = FlavorType.pro;
+  FlavorConfig.flavor = FlavorType.prod;
   FlavorConfig.name = 'prod';
   FlavorConfig.values = FlavorValues(
     baseUrl: baseUrl ?? "",
@@ -71,7 +71,7 @@ void setFlavor(FlavorType flavor, {String? overrideBaseUrl}) {
     case FlavorType.stag:
       setFlavorStaging(overrideBaseUrl);
       break;
-    case FlavorType.pro:
+    case FlavorType.prod:
       setFlavorProduction(overrideBaseUrl);
       break;
     default:
