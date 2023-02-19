@@ -42,3 +42,15 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Generated file
+*.g.dart
+/lib/core/locale/generated/
+ios/build
+.firebase
+*.lock
+
+# code analyze
+metrics/
+
+pubspec.lock
