@@ -6,11 +6,11 @@ class ErrorInterceptors extends Interceptor {
   void onError(DioError err, ErrorInterceptorHandler handler) {
     logUtil.error('Dio err raw data: ${err.response?.data}');
     switch (err.type) {
-      case DioErrorType.connectTimeout:
-      case DioErrorType.sendTimeout:
-      case DioErrorType.receiveTimeout:
+      case DioExceptionType.connectionTimeout:
+      case DioExceptionType.sendTimeout:
+      case DioExceptionType.receiveTimeout:
         throw DeadlineExceededException(err.requestOptions);
-      case DioErrorType.response:
+      case DioExceptionType.badResponse:
         logUtil.error('Dio err type: ${err.response?.statusCode}');
         switch (err.response?.statusCode) {
           case 400:
@@ -28,9 +28,13 @@ class ErrorInterceptors extends Interceptor {
             throw InternalServerErrorException(err.requestOptions);
         }
         break;
-      case DioErrorType.cancel:
+      case DioExceptionType.cancel:
         break;
-      case DioErrorType.other:
+      case DioExceptionType.badCertificate:
+        throw NoInternetConnectionException(err.requestOptions);
+      case DioExceptionType.connectionError:
+        throw NoInternetConnectionException(err.requestOptions);
+      case DioExceptionType.unknown:
         throw NoInternetConnectionException(err.requestOptions);
     }
 
@@ -38,7 +42,7 @@ class ErrorInterceptors extends Interceptor {
   }
 }
 
-class BadRequestException extends DioError {
+class BadRequestException extends DioException {
   BadRequestException(RequestOptions r) : super(requestOptions: r);
   @override
   String toString() {
@@ -46,7 +50,7 @@ class BadRequestException extends DioError {
   }
 }
 
-class InternalServerErrorException extends DioError {
+class InternalServerErrorException extends DioException {
   InternalServerErrorException(RequestOptions r) : super(requestOptions: r);
 
   @override
@@ -55,7 +59,7 @@ class InternalServerErrorException extends DioError {
   }
 }
 
-class ConflictException extends DioError {
+class ConflictException extends DioException {
   ConflictException(RequestOptions r) : super(requestOptions: r);
 
   @override
@@ -64,7 +68,7 @@ class ConflictException extends DioError {
   }
 }
 
-class UnauthorizedException extends DioError {
+class UnauthorizedException extends DioException {
   UnauthorizedException(RequestOptions r) : super(requestOptions: r);
 
   @override
@@ -73,7 +77,7 @@ class UnauthorizedException extends DioError {
   }
 }
 
-class NotFoundException extends DioError {
+class NotFoundException extends DioException {
   NotFoundException(
     RequestOptions r,
     Response<dynamic>? response,
@@ -85,7 +89,7 @@ class NotFoundException extends DioError {
   }
 }
 
-class NoInternetConnectionException extends DioError {
+class NoInternetConnectionException extends DioException {
   NoInternetConnectionException(RequestOptions r) : super(requestOptions: r);
 
   @override
@@ -94,7 +98,7 @@ class NoInternetConnectionException extends DioError {
   }
 }
 
-class DeadlineExceededException extends DioError {
+class DeadlineExceededException extends DioException {
   DeadlineExceededException(RequestOptions r) : super(requestOptions: r);
 
   @override
