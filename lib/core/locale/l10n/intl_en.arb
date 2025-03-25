@@ -38,5 +38,75 @@
   "settingsLabel": "Settings",
   "@settingsLabel": {
     "description": "Label for settings"
+  },
+  "welcomeMessage": "Welcome to {appName}!",
+  "@welcomeMessage": {
+    "description": "Welcome message with app name",
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "errorMessage": "An error occurred: {error}",
+  "@errorMessage": {
+    "description": "Error message with error details",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "successMessage": "Operation completed successfully",
+  "@successMessage": {
+    "description": "Success message"
+  },
+  "loadingMessage": "Loading...",
+  "@loadingMessage": {
+    "description": "Loading message"
+  },
+  "retryButton": "Retry",
+  "@retryButton": {
+    "description": "Retry button text"
+  },
+  "cancelButton": "Cancel",
+  "@cancelButton": {
+    "description": "Cancel button text"
+  },
+  "saveButton": "Save",
+  "@saveButton": {
+    "description": "Save button text"
+  },
+  "deleteButton": "Delete",
+  "@deleteButton": {
+    "description": "Delete button text"
+  },
+  "editButton": "Edit",
+  "@editButton": {
+    "description": "Edit button text"
+  },
+  "searchHint": "Search...",
+  "@searchHint": {
+    "description": "Search field hint text"
+  },
+  "noResultsFound": "No results found",
+  "@noResultsFound": {
+    "description": "Message shown when no search results are found"
+  },
+  "networkError": "Network error occurred",
+  "@networkError": {
+    "description": "Message shown when a network error occurs"
+  },
+  "serverError": "Server error occurred",
+  "@serverError": {
+    "description": "Message shown when a server error occurs"
+  },
+  "connectionError": "Connection error occurred",
+  "@connectionError": {
+    "description": "Message shown when a connection error occurs"
+  },
+  "timeoutError": "Request timed out",
+  "@timeoutError": {
+    "description": "Message shown when a request times out"
   }
 }

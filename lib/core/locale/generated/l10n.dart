@@ -149,6 +149,156 @@ class S {
       args: [],
     );
   }
+
+  /// `Welcome to {appName}!`
+  String welcomeMessage(String appName) {
+    return Intl.message(
+      'Welcome to $appName!',
+      name: 'welcomeMessage',
+      desc: 'Welcome message with app name',
+      args: [appName],
+    );
+  }
+
+  /// `An error occurred: {error}`
+  String errorMessage(String error) {
+    return Intl.message(
+      'An error occurred: $error',
+      name: 'errorMessage',
+      desc: 'Error message with error details',
+      args: [error],
+    );
+  }
+
+  /// `Operation completed successfully`
+  String get successMessage {
+    return Intl.message(
+      'Operation completed successfully',
+      name: 'successMessage',
+      desc: 'Success message',
+      args: [],
+    );
+  }
+
+  /// `Loading...`
+  String get loadingMessage {
+    return Intl.message(
+      'Loading...',
+      name: 'loadingMessage',
+      desc: 'Loading message',
+      args: [],
+    );
+  }
+
+  /// `Retry`
+  String get retryButton {
+    return Intl.message(
+      'Retry',
+      name: 'retryButton',
+      desc: 'Retry button text',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancelButton {
+    return Intl.message(
+      'Cancel',
+      name: 'cancelButton',
+      desc: 'Cancel button text',
+      args: [],
+    );
+  }
+
+  /// `Save`
+  String get saveButton {
+    return Intl.message(
+      'Save',
+      name: 'saveButton',
+      desc: 'Save button text',
+      args: [],
+    );
+  }
+
+  /// `Delete`
+  String get deleteButton {
+    return Intl.message(
+      'Delete',
+      name: 'deleteButton',
+      desc: 'Delete button text',
+      args: [],
+    );
+  }
+
+  /// `Edit`
+  String get editButton {
+    return Intl.message(
+      'Edit',
+      name: 'editButton',
+      desc: 'Edit button text',
+      args: [],
+    );
+  }
+
+  /// `Search...`
+  String get searchHint {
+    return Intl.message(
+      'Search...',
+      name: 'searchHint',
+      desc: 'Search field hint text',
+      args: [],
+    );
+  }
+
+  /// `No results found`
+  String get noResultsFound {
+    return Intl.message(
+      'No results found',
+      name: 'noResultsFound',
+      desc: 'Message shown when no search results are found',
+      args: [],
+    );
+  }
+
+  /// `Network error occurred`
+  String get networkError {
+    return Intl.message(
+      'Network error occurred',
+      name: 'networkError',
+      desc: 'Message shown when a network error occurs',
+      args: [],
+    );
+  }
+
+  /// `Server error occurred`
+  String get serverError {
+    return Intl.message(
+      'Server error occurred',
+      name: 'serverError',
+      desc: 'Message shown when a server error occurs',
+      args: [],
+    );
+  }
+
+  /// `Connection error occurred`
+  String get connectionError {
+    return Intl.message(
+      'Connection error occurred',
+      name: 'connectionError',
+      desc: 'Message shown when a connection error occurs',
+      args: [],
+    );
+  }
+
+  /// `Request timed out`
+  String get timeoutError {
+    return Intl.message(
+      'Request timed out',
+      name: 'timeoutError',
+      desc: 'Message shown when a request times out',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

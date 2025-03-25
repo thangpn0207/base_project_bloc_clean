@@ -16,8 +16,10 @@ class ObserverBloc extends BlocObserver {
   void onEvent(Bloc bloc, Object? event) {
     super.onEvent(bloc, event);
     if (DebugConfig.showLogs) {
-      LogUtil.i('Event ${event.runtimeType} of ${bloc.runtimeType}',
-          tag: 'BlocObserver',);
+      LogUtil.i(
+        'Event ${event.runtimeType} of ${bloc.runtimeType}',
+        tag: 'BlocObserver',
+      );
     }
   }
 
@@ -34,19 +36,24 @@ class ObserverBloc extends BlocObserver {
     super.onTransition(bloc, transition);
     if (DebugConfig.showLogs) {
       LogUtil.d(
-          'Transition ${bloc.runtimeType}\n'
-          'Current state: ${transition.currentState.runtimeType}\n'
-          'Event: ${transition.event.runtimeType}\n'
-          'Next state: ${transition.nextState.runtimeType}',
-          tag: 'BlocObserver',);
+        'Transition ${bloc.runtimeType}\n'
+        'Current state: ${transition.currentState.runtimeType}\n'
+        'Event: ${transition.event.runtimeType}\n'
+        'Next state: ${transition.nextState.runtimeType}',
+        tag: 'BlocObserver',
+      );
     }
   }
 
   @override
   void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
     // Always log errors, but through our logging system that's still controlled by debug mode
-    LogUtil.e('onError -- ${bloc.runtimeType}',
-        tag: 'BlocObserver', error: error, stackTrace: stackTrace,);
+    LogUtil.e(
+      'onError -- ${bloc.runtimeType}',
+      tag: 'BlocObserver',
+      error: error,
+      stackTrace: stackTrace,
+    );
     super.onError(bloc, error, stackTrace);
   }
 

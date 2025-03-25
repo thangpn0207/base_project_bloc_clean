@@ -20,18 +20,43 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
+  static String m0(error) => "An error occurred: ${error}";
+
+  static String m1(appName) => "Welcome to ${appName}!";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "appTitle": MessageLookupByLibrary.simpleMessage("Base Project"),
+        "cancelButton": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "connectionError":
+            MessageLookupByLibrary.simpleMessage("Connection error occurred"),
         "darkTheme": MessageLookupByLibrary.simpleMessage("Dark Theme"),
+        "deleteButton": MessageLookupByLibrary.simpleMessage("Delete"),
+        "editButton": MessageLookupByLibrary.simpleMessage("Edit"),
         "english": MessageLookupByLibrary.simpleMessage("English"),
+        "errorMessage": m0,
         "homeScreenTitle": MessageLookupByLibrary.simpleMessage("Home Screen"),
         "languageSettings":
             MessageLookupByLibrary.simpleMessage("Language Settings"),
         "lightTheme": MessageLookupByLibrary.simpleMessage("Light Theme"),
+        "loadingMessage": MessageLookupByLibrary.simpleMessage("Loading..."),
+        "networkError":
+            MessageLookupByLibrary.simpleMessage("Network error occurred"),
+        "noResultsFound":
+            MessageLookupByLibrary.simpleMessage("No results found"),
+        "retryButton": MessageLookupByLibrary.simpleMessage("Retry"),
+        "saveButton": MessageLookupByLibrary.simpleMessage("Save"),
+        "searchHint": MessageLookupByLibrary.simpleMessage("Search..."),
+        "serverError":
+            MessageLookupByLibrary.simpleMessage("Server error occurred"),
         "settingsLabel": MessageLookupByLibrary.simpleMessage("Settings"),
+        "successMessage": MessageLookupByLibrary.simpleMessage(
+            "Operation completed successfully"),
         "systemTheme": MessageLookupByLibrary.simpleMessage("System Theme"),
         "themeSettings": MessageLookupByLibrary.simpleMessage("Theme Settings"),
-        "vietnamese": MessageLookupByLibrary.simpleMessage("Vietnamese")
+        "timeoutError":
+            MessageLookupByLibrary.simpleMessage("Request timed out"),
+        "vietnamese": MessageLookupByLibrary.simpleMessage("Vietnamese"),
+        "welcomeMessage": m1
       };
 }
