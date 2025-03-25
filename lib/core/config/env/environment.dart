@@ -84,17 +84,9 @@ class Environment {
   static Future<void> _loadEnvFile() async {
     final envFileName = _getEnvFileName();
     try {
-      final envFile = File(envFileName);
-      if (await envFile.exists()) {
-        final envVars = await envFile.readAsString();
-        _parseEnvFile(envVars);
-        LogUtil.i('Loaded environment file: $envFileName', tag: 'Environment');
-      } else {
-        LogUtil.w(
-          'Environment file not found: $envFileName',
-          tag: 'Environment',
-        );
-      }
+      await dotenv.load(fileName: envFileName);
+      _parseEnvFile();
+      LogUtil.i('Loaded environment file: $envFileName', tag: 'Environment');
     } catch (e) {
       LogUtil.e(
         'Failed to load environment file: $envFileName',
@@ -129,25 +121,21 @@ class Environment {
   }
 
   static String _getEnvFileName() {
-    String envFileName;
-
     switch (_currentEnvironment) {
       case EnvironmentType.development:
-        envFileName = '.env.development';
-        break;
+        return '.env.development';
       case EnvironmentType.staging:
-        envFileName = '.env.staging';
-        break;
+        return '.env.staging';
       case EnvironmentType.production:
-        envFileName = '.env.production';
-        break;
+        return '.env.production';
     }
-
-    return envFileName;
   }
 
-  static void _parseEnvFile(String envVars) {
-    // Implementation of _parseEnvFile method
+  static void _parseEnvFile() {
+    _appName = dotenv.env['APP_NAME'];
+    _baseUrl = dotenv.env['BASE_URL'];
+    _isDebugMode = dotenv.env['DEBUG_MODE']?.toLowerCase() == 'true';
+    _isLoggingEnabled = dotenv.env['LOGGING_ENABLED']?.toLowerCase() == 'true';
   }
 
   /// Reset all environment settings

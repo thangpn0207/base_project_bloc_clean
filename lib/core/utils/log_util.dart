@@ -2,6 +2,7 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
+import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 /// Enhanced logging utility that only logs in debug mode
@@ -12,11 +13,9 @@ class LogUtil {
 
   /// Initialize the logging system
   static void init() {
-    if (_isInitialized) {
-      return;
-    }
+    if (_isInitialized) return;
 
-    // Configure the default logger
+    // Configure the default logger with a simple printer
     Logger.level = Level.debug;
     _isInitialized = true;
   }
@@ -31,15 +30,20 @@ class LogUtil {
     if (!_isInitialized) {
       init();
     }
-    return _loggers.putIfAbsent(name, () => Logger(printer: PrettyPrinter()));
+    return _loggers.putIfAbsent(name, () {
+      return Logger(
+        printer: SimplePrinter(
+          colors: true,
+          printTime: true,
+        ),
+      );
+    });
   }
 
   /// Log a debug message
   static void d(String message,
       {String? tag, Object? error, StackTrace? stackTrace}) {
-    if (!kDebugMode || !_isEnabled) {
-      return;
-    }
+    if (!kDebugMode || !_isEnabled) return;
     final logger = getLogger(tag ?? 'App');
     logger.d(message);
     if (error != null) {
@@ -53,9 +57,7 @@ class LogUtil {
   /// Log an info message
   static void i(String message,
       {String? tag, Object? error, StackTrace? stackTrace}) {
-    if (!kDebugMode || !_isEnabled) {
-      return;
-    }
+    if (!kDebugMode || !_isEnabled) return;
     final logger = getLogger(tag ?? 'App');
     logger.i(message);
     if (error != null) {
@@ -69,9 +71,7 @@ class LogUtil {
   /// Log a warning message
   static void w(String message,
       {String? tag, Object? error, StackTrace? stackTrace}) {
-    if (!kDebugMode || !_isEnabled) {
-      return;
-    }
+    if (!kDebugMode || !_isEnabled) return;
     final logger = getLogger(tag ?? 'App');
     logger.w(message);
     if (error != null) {
@@ -85,9 +85,7 @@ class LogUtil {
   /// Log an error message
   static void e(String message,
       {String? tag, Object? error, StackTrace? stackTrace}) {
-    if (!kDebugMode || !_isEnabled) {
-      return;
-    }
+    if (!kDebugMode || !_isEnabled) return;
     final logger = getLogger(tag ?? 'App');
     logger.e(message);
     if (error != null) {
@@ -100,24 +98,16 @@ class LogUtil {
 
   /// Log a navigation event
   static void nav(String message, {String? tag}) {
-    if (!kDebugMode || !_isEnabled) {
-      return;
-    }
+    if (!kDebugMode || !_isEnabled) return;
     final logger = getLogger(tag ?? 'Navigation');
     logger.i('[NAV] $message');
   }
 
   /// Get current build mode
   static String get currentBuildMode {
-    if (kDebugMode) {
-      return 'DEBUG';
-    }
-    if (kProfileMode) {
-      return 'PROFILE';
-    }
-    if (kReleaseMode) {
-      return 'RELEASE';
-    }
+    if (kDebugMode) return 'DEBUG';
+    if (kProfileMode) return 'PROFILE';
+    if (kReleaseMode) return 'RELEASE';
     return 'UNKNOWN';
   }
 
