@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:base_project_bloc/core/theme/cubit/theme_cubit.dart';
+import 'package:base_project_bloc/core/di/injection.dart';
+import 'package:base_project_bloc/core/theme/app_theme.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -48,32 +51,41 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       SystemUiMode.manual,
       overlays: [SystemUiOverlay.bottom, SystemUiOverlay.top],
     );
-    List<BlocProvider> getProviders() => [];
+    List<BlocProvider> getProviders() => [
+          BlocProvider(create: (context) => getIt<ThemeCubit>()),
+        ];
     return MultiBlocProvider(
       providers: getProviders(),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        navigatorObservers: <NavigatorObserver>[NavigatorObserver()],
-        navigatorKey: navigatorKey,
-        routes: Routes.routes,
-        localizationsDelegates: const [
-          S.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: S.delegate.supportedLocales,
-        builder: (context, child) {
-          return GestureDetector(
-            onTap: () {
-              FocusManager.instance.primaryFocus?.unfocus();
+      child: BlocBuilder<ThemeCubit, ThemeMode>(
+        builder: (context, themeMode) {
+          return MaterialApp(
+            themeMode: themeMode,
+            theme: AppTheme.lightTheme,
+            darkTheme: AppTheme.darkTheme,
+            debugShowCheckedModeBanner: false,
+            navigatorObservers: <NavigatorObserver>[NavigatorObserver()],
+            navigatorKey: navigatorKey,
+            routes: Routes.routes,
+            localizationsDelegates: const [
+              S.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: S.delegate.supportedLocales,
+            builder: (context, child) {
+              return GestureDetector(
+                onTap: () {
+                  FocusManager.instance.primaryFocus?.unfocus();
+                },
+                child: SafeArea(
+                  bottom: false,
+                  child: Scaffold(
+                    body: child,
+                  ),
+                ),
+              );
             },
-            child: SafeArea(
-              bottom: false,
-              child: Scaffold(
-                body: child,
-              ),
-            ),
           );
         },
       ),
