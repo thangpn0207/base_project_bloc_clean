@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:base_project_bloc/presentation_layer/core_app/routes/app_router.dart';
+import 'package:base_project_bloc/core/utils/log_util.dart';
 
 class DeepLinkHandler {
   static const platform = MethodChannel('app/deep_link');
@@ -12,7 +12,7 @@ class DeepLinkHandler {
       // Navigate using GoRouter
       AppRouter.router.go(uri.path, extra: uri.queryParameters);
     } catch (e) {
-      debugPrint('Deep link error: $e');
+      LogUtil.e('Deep link error: $e', tag: 'DeepLinkHandler');
     }
   }
 

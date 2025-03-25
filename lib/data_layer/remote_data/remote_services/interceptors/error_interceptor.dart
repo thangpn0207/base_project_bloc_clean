@@ -1,34 +1,47 @@
 import 'package:base_project_bloc/core/utils/log_util.dart';
 import 'package:dio/dio.dart';
 
-class ErrorInterceptors extends Interceptor {
+class ErrorInterceptor extends Interceptor {
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
-    logUtil.error('Dio err raw data: ${err.response?.data}');
+    LogUtil.e('Dio err raw data: ${err.response?.data}', tag: 'DioError');
+
     switch (err.type) {
       case DioExceptionType.connectionTimeout:
+        LogUtil.e('Dio err type: ${err.response?.statusCode}', tag: 'DioError');
+        throw DeadlineExceededException(err.requestOptions);
       case DioExceptionType.sendTimeout:
+        LogUtil.e('Dio err type: ${err.response?.statusCode}', tag: 'DioError');
+        throw DeadlineExceededException(err.requestOptions);
       case DioExceptionType.receiveTimeout:
+        LogUtil.e('Dio err type: ${err.response?.statusCode}', tag: 'DioError');
         throw DeadlineExceededException(err.requestOptions);
       case DioExceptionType.badResponse:
-        logUtil.error('Dio err type: ${err.response?.statusCode}');
         switch (err.response?.statusCode) {
           case 400:
-            throw BadRequestException(
-              err.requestOptions,
-            );
+            LogUtil.e('Bad request', tag: 'DioError');
+            throw BadRequestException(err.requestOptions);
           case 401:
-            logUtil.error("401");
+            LogUtil.e('401', tag: 'DioError');
             throw UnauthorizedException(err.requestOptions);
+          case 403:
+            LogUtil.e('Forbidden', tag: 'DioError');
+            throw ForbiddenException(err.requestOptions);
           case 404:
+            LogUtil.e('Not found', tag: 'DioError');
             throw NotFoundException(err.requestOptions, err.response);
           case 409:
+            LogUtil.e('Conflict', tag: 'DioError');
             throw ConflictException(err.requestOptions);
           case 500:
+            LogUtil.e('Server error', tag: 'DioError');
             throw InternalServerErrorException(err.requestOptions);
+          default:
+            LogUtil.e('Something went wrong', tag: 'DioError');
+            throw UnknownException(err.requestOptions);
         }
-        break;
       case DioExceptionType.cancel:
+        LogUtil.e('Request cancelled', tag: 'DioError');
         break;
       case DioExceptionType.badCertificate:
         throw NoInternetConnectionException(err.requestOptions);
@@ -37,8 +50,7 @@ class ErrorInterceptors extends Interceptor {
       case DioExceptionType.unknown:
         throw NoInternetConnectionException(err.requestOptions);
     }
-
-    return handler.next(err);
+    handler.next(err);
   }
 }
 
@@ -104,5 +116,23 @@ class DeadlineExceededException extends DioException {
   @override
   String toString() {
     return 'The connection has timed out, please try again.';
+  }
+}
+
+class ForbiddenException extends DioException {
+  ForbiddenException(RequestOptions r) : super(requestOptions: r);
+
+  @override
+  String toString() {
+    return 'Access forbidden';
+  }
+}
+
+class UnknownException extends DioException {
+  UnknownException(RequestOptions r) : super(requestOptions: r);
+
+  @override
+  String toString() {
+    return 'An unknown error occurred';
   }
 }

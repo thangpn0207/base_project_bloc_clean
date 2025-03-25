@@ -61,11 +61,6 @@ bool _messagesExistFor(String locale) {
 
 MessageLookupByLibrary? _findGeneratedMessagesFor(String locale) {
   var actualLocale =
-import 'messages_en.dart' as messages_en;
-import 'messages_vi.dart' as messages_vi;
-  'vi': () => new SynchronousFuture(null),
-    case 'vi':
-      return messages_vi.messages;
       Intl.verifiedLocale(locale, _messagesExistFor, onFailure: (_) => null);
   if (actualLocale == null) return null;
   return _findExact(actualLocale);
