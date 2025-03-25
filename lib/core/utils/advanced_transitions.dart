@@ -46,7 +46,7 @@ class AdvancedTransitions {
           opacity: curvedAnimation,
           child: SlideTransition(
             position: Tween<Offset>(
-              begin: const Offset(0.0, 0.3),
+              begin: const Offset(0, 0.3),
               end: Offset.zero,
             ).animate(curvedAnimation),
             child: child,
@@ -69,11 +69,11 @@ class AdvancedTransitions {
       key: state.pageKey,
       child: child,
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        const begin = Offset(1.0, 0.0);
+        const begin = Offset(1, 0);
         const end = Offset.zero;
         const curve = Curves.easeInOutCubic;
 
-        var tween = Tween(
+        final tween = Tween(
           begin: isForward ? begin : -begin,
           end: end,
         ).chain(CurveTween(curve: curve));
@@ -150,28 +150,34 @@ class _SharedAxisHorizontal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final fadeIn = Tween<double>(
-      begin: 0.0,
-      end: 1.0,
-    ).animate(CurvedAnimation(
-      parent: animation,
-      curve: const Interval(0.3, 1.0, curve: Curves.easeOut),
-    ));
+      begin: 0,
+      end: 1,
+    ).animate(
+      CurvedAnimation(
+        parent: animation,
+        curve: const Interval(0.3, 1, curve: Curves.easeOut),
+      ),
+    );
 
     final fadeOut = Tween<double>(
-      begin: 1.0,
-      end: 0.0,
-    ).animate(CurvedAnimation(
-      parent: secondaryAnimation,
-      curve: const Interval(0.0, 0.7, curve: Curves.easeIn),
-    ));
+      begin: 1,
+      end: 0,
+    ).animate(
+      CurvedAnimation(
+        parent: secondaryAnimation,
+        curve: const Interval(0, 0.7, curve: Curves.easeIn),
+      ),
+    );
 
     final slideIn = Tween<Offset>(
-      begin: const Offset(1.0, 0.0),
+      begin: const Offset(1, 0),
       end: Offset.zero,
-    ).animate(CurvedAnimation(
-      parent: animation,
-      curve: Curves.easeOutCubic,
-    ));
+    ).animate(
+      CurvedAnimation(
+        parent: animation,
+        curve: Curves.easeOutCubic,
+      ),
+    );
 
     return FadeTransition(
       opacity: fadeIn,
@@ -201,28 +207,34 @@ class _SharedAxisVertical extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final fadeIn = Tween<double>(
-      begin: 0.0,
-      end: 1.0,
-    ).animate(CurvedAnimation(
-      parent: animation,
-      curve: const Interval(0.3, 1.0, curve: Curves.easeOut),
-    ));
+      begin: 0,
+      end: 1,
+    ).animate(
+      CurvedAnimation(
+        parent: animation,
+        curve: const Interval(0.3, 1, curve: Curves.easeOut),
+      ),
+    );
 
     final fadeOut = Tween<double>(
-      begin: 1.0,
-      end: 0.0,
-    ).animate(CurvedAnimation(
-      parent: secondaryAnimation,
-      curve: const Interval(0.0, 0.7, curve: Curves.easeIn),
-    ));
+      begin: 1,
+      end: 0,
+    ).animate(
+      CurvedAnimation(
+        parent: secondaryAnimation,
+        curve: const Interval(0, 0.7, curve: Curves.easeIn),
+      ),
+    );
 
     final slideIn = Tween<Offset>(
-      begin: const Offset(0.0, 1.0),
+      begin: const Offset(0, 1),
       end: Offset.zero,
-    ).animate(CurvedAnimation(
-      parent: animation,
-      curve: Curves.easeOutCubic,
-    ));
+    ).animate(
+      CurvedAnimation(
+        parent: animation,
+        curve: Curves.easeOutCubic,
+      ),
+    );
 
     return FadeTransition(
       opacity: fadeIn,
@@ -252,28 +264,34 @@ class _SharedAxisScaled extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final fadeIn = Tween<double>(
-      begin: 0.0,
-      end: 1.0,
-    ).animate(CurvedAnimation(
-      parent: animation,
-      curve: const Interval(0.3, 1.0, curve: Curves.easeOut),
-    ));
+      begin: 0,
+      end: 1,
+    ).animate(
+      CurvedAnimation(
+        parent: animation,
+        curve: const Interval(0.3, 1, curve: Curves.easeOut),
+      ),
+    );
 
     final fadeOut = Tween<double>(
-      begin: 1.0,
-      end: 0.0,
-    ).animate(CurvedAnimation(
-      parent: secondaryAnimation,
-      curve: const Interval(0.0, 0.7, curve: Curves.easeIn),
-    ));
+      begin: 1,
+      end: 0,
+    ).animate(
+      CurvedAnimation(
+        parent: secondaryAnimation,
+        curve: const Interval(0, 0.7, curve: Curves.easeIn),
+      ),
+    );
 
     final scaleIn = Tween<double>(
       begin: 0.8,
-      end: 1.0,
-    ).animate(CurvedAnimation(
-      parent: animation,
-      curve: Curves.easeOutCubic,
-    ));
+      end: 1,
+    ).animate(
+      CurvedAnimation(
+        parent: animation,
+        curve: Curves.easeOutCubic,
+      ),
+    );
 
     return FadeTransition(
       opacity: fadeIn,

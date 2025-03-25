@@ -7,7 +7,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:base_project_bloc/core/theme/cubit/theme_cubit.dart';
 import 'package:base_project_bloc/core/di/injection.dart';
 import 'package:base_project_bloc/core/theme/app_theme.dart';
-import 'package:base_project_bloc/core/observers/navigator_obsercer.dart';
 import 'package:base_project_bloc/core/utils/deep_link_handler.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -20,8 +19,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
-  final _navigatorMiddleware = NavigatorMiddleware();
-
   @override
   void initState() {
     super.initState();

@@ -8,7 +8,9 @@ class RouteUtils {
   /// Check if we're currently on a specific route
   static bool isCurrentRoute(String route) {
     final current = currentLocation;
-    if (current == null) return false;
+    if (current == null) {
+      return false;
+    }
 
     return current == route ||
         current.startsWith('$route?') ||
@@ -18,7 +20,9 @@ class RouteUtils {
   /// Extract the route name without query parameters
   static String? get currentRouteName {
     final location = currentLocation;
-    if (location == null) return null;
+    if (location == null) {
+      return null;
+    }
 
     final uri = Uri.parse(location);
     return uri.path;

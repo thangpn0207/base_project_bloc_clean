@@ -28,7 +28,7 @@ class PageTransitions {
       key: state.pageKey,
       child: child,
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        const begin = Offset(1.0, 0.0);
+        const begin = Offset(1, 0);
         const end = Offset.zero;
         const curve = Curves.easeInOut;
         final tween =
@@ -48,7 +48,7 @@ class PageTransitions {
       key: state.pageKey,
       child: child,
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        const begin = Offset(-1.0, 0.0);
+        const begin = Offset(-1, 0);
         const end = Offset.zero;
         const curve = Curves.easeInOut;
         final tween =
@@ -68,7 +68,7 @@ class PageTransitions {
       key: state.pageKey,
       child: child,
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        const begin = Offset(0.0, 1.0);
+        const begin = Offset(0, 1);
         const end = Offset.zero;
         const curve = Curves.easeInOut;
         final tween =
@@ -88,11 +88,12 @@ class PageTransitions {
       key: state.pageKey,
       child: child,
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        const begin = 0.0;
-        const end = 1.0;
+        const begin = 0;
+        const end = 1;
         const curve = Curves.easeInOut;
         final tween =
-            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+            Tween<double>(begin: begin.toDouble(), end: end.toDouble())
+                .chain(CurveTween(curve: curve));
         return ScaleTransition(scale: animation.drive(tween), child: child);
       },
     );
@@ -108,13 +109,13 @@ class PageTransitions {
       key: state.pageKey,
       child: child,
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        final scaleAnimation = Tween(begin: 0.0, end: 1.0).animate(
+        final scaleAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
           CurvedAnimation(
             parent: animation,
             curve: Curves.fastOutSlowIn,
           ),
         );
-        final rotateAnimation = Tween(begin: 0.5, end: 0.0).animate(
+        final rotateAnimation = Tween<double>(begin: 0.5, end: 0.0).animate(
           CurvedAnimation(
             parent: animation,
             curve: Curves.fastOutSlowIn,
@@ -131,7 +132,7 @@ class PageTransitions {
     );
   }
 
-  /// Fade through transition (fade out first screen, then fade in second)
+  /// Creates a fade through transition (fade out first screen, then fade in second)
   static Page<dynamic> fadeThroughTransition(
     BuildContext context,
     GoRouterState state,
