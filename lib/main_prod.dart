@@ -4,11 +4,9 @@ import 'package:base_project_bloc/core/config/dependency/injection.dart'
 import 'package:base_project_bloc/core/config/env/environment.dart';
 import 'package:base_project_bloc/core/observers/bloc_observer.dart';
 import 'package:base_project_bloc/presentation_layer/app.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:base_project_bloc/core/config/theme/app_theme.dart';
-import 'package:base_project_bloc/core/config/routes/app_router.dart';
-import 'package:base_project_bloc/core/di/injection_container.dart' as di;
 import 'package:base_project_bloc/core/utils/log_util.dart';
 
 /// Main entry point for production environment (both web and native)
@@ -23,9 +21,6 @@ void main() async {
 
   // Initialize debug configuration - should be disabled in production anyway
   DebugConfig.init();
-
-  // Initialize dependency injection
-  await di.init();
 
   // Log environment info
   LogUtil.i('App running in PRODUCTION environment', tag: 'MainProd');
