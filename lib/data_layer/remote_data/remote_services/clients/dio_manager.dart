@@ -1,4 +1,5 @@
 import 'package:base_project_bloc/core/config/network_config/configs_network.dart';
+import 'package:base_project_bloc/data_layer/remote_data/remote_services/interceptors/error_interceptor.dart';
 import 'package:base_project_bloc/data_layer/remote_data/remote_services/interceptors/token_interceptor.dart';
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -21,7 +22,7 @@ class DioManager {
       //logging interceptor
       TokenInterceptor(),
       //error interceptor
-      ErrorInterceptors(),
+      ErrorInterceptor(),
     });
     dio.interceptors.add(
       PrettyDioLogger(
