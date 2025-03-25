@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:base_project_bloc/core/config/flavor/flavor.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';

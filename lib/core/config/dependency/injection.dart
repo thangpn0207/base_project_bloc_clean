@@ -31,8 +31,8 @@ void _configureRepositories() {
 
 void _configureBlocs() {
   // Register ThemeCubit
-  getIt.registerSingleton<ThemeCubit>(ThemeCubit(getIt<SharedPreferences>()));
+  getIt..registerSingleton<ThemeCubit>(ThemeCubit(getIt<SharedPreferences>()))
 
   // Register LocaleCubit
-  getIt.registerSingleton<LocaleCubit>(LocaleCubit(getIt<SharedPreferences>()));
+  ..registerSingleton<LocaleCubit>(LocaleCubit(getIt<SharedPreferences>()));
 }

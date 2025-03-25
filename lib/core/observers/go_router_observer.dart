@@ -71,8 +71,8 @@ class GoRouterObserver extends NavigatorObserver {
     final extra = state?.extra != null ? 'Extra: ${state!.extra}' : '';
 
     // Build a more structured log message
-    final StringBuilder sb = StringBuilder();
-    sb.appendLine('🧭 GoRouter [$event] $message');
+    final StringBuilder sb = StringBuilder()
+    ..appendLine('🧭 GoRouter [$event] $message');
 
     if (location != null) {
       sb.appendLine('📍 Location: $location');
