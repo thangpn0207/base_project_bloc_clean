@@ -49,6 +49,106 @@ class S {
   static S? maybeOf(BuildContext context) {
     return Localizations.of<S>(context, S);
   }
+
+  /// `Base Project`
+  String get appTitle {
+    return Intl.message(
+      'Base Project',
+      name: 'appTitle',
+      desc: 'The title of the application',
+      args: [],
+    );
+  }
+
+  /// `Home Screen`
+  String get homeScreenTitle {
+    return Intl.message(
+      'Home Screen',
+      name: 'homeScreenTitle',
+      desc: 'Title for the home screen',
+      args: [],
+    );
+  }
+
+  /// `Theme Settings`
+  String get themeSettings {
+    return Intl.message(
+      'Theme Settings',
+      name: 'themeSettings',
+      desc: 'Title for theme settings section',
+      args: [],
+    );
+  }
+
+  /// `Light Theme`
+  String get lightTheme {
+    return Intl.message(
+      'Light Theme',
+      name: 'lightTheme',
+      desc: 'Light theme option',
+      args: [],
+    );
+  }
+
+  /// `Dark Theme`
+  String get darkTheme {
+    return Intl.message(
+      'Dark Theme',
+      name: 'darkTheme',
+      desc: 'Dark theme option',
+      args: [],
+    );
+  }
+
+  /// `System Theme`
+  String get systemTheme {
+    return Intl.message(
+      'System Theme',
+      name: 'systemTheme',
+      desc: 'System theme option',
+      args: [],
+    );
+  }
+
+  /// `Language Settings`
+  String get languageSettings {
+    return Intl.message(
+      'Language Settings',
+      name: 'languageSettings',
+      desc: 'Title for language settings section',
+      args: [],
+    );
+  }
+
+  /// `English`
+  String get english {
+    return Intl.message(
+      'English',
+      name: 'english',
+      desc: 'English language option',
+      args: [],
+    );
+  }
+
+  /// `Vietnamese`
+  String get vietnamese {
+    return Intl.message(
+      'Vietnamese',
+      name: 'vietnamese',
+      desc: 'Vietnamese language option',
+      args: [],
+    );
+  }
+
+  /// `Settings`
+  String get settingsLabel {
+    return Intl.message(
+      'Settings',
+      name: 'settingsLabel',
+      desc: 'Label for settings',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
@@ -57,6 +157,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   List<Locale> get supportedLocales {
     return const <Locale>[
       Locale.fromSubtags(languageCode: 'en'),
+      Locale.fromSubtags(languageCode: 'vi'),
     ];
   }
 
