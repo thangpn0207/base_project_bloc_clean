@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:base_project_bloc/core/utils/log_util.dart';
 
 /// Configuration class for debug settings
