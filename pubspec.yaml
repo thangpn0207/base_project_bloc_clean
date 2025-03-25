@@ -90,7 +90,6 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
-    - assets/animations/
     - .env.development
     - .env.staging
     - .env.production

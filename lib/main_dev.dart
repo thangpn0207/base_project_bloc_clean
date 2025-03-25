@@ -4,7 +4,6 @@ import 'package:base_project_bloc/core/config/dependency/injection.dart'
 import 'package:base_project_bloc/core/config/env/environment.dart';
 import 'package:base_project_bloc/core/observers/bloc_observer.dart';
 import 'package:base_project_bloc/presentation_layer/app.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
