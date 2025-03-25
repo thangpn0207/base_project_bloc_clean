@@ -9,9 +9,11 @@ class DioManager {
   static Dio createDio() {
     final dio = Dio(
       BaseOptions(
-        receiveTimeout: Duration(milliseconds: ConfigNetwork.receiveTimeout),
-        connectTimeout: Duration(milliseconds: ConfigNetwork.connectTimeout),
-        sendTimeout: Duration(milliseconds: ConfigNetwork.sendTimeout),
+        receiveTimeout:
+            const Duration(milliseconds: ConfigNetwork.receiveTimeout),
+        connectTimeout:
+            const Duration(milliseconds: ConfigNetwork.connectTimeout),
+        sendTimeout: const Duration(milliseconds: ConfigNetwork.sendTimeout),
       ),
     );
     //add interceptors debug

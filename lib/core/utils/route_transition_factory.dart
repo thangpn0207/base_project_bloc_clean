@@ -46,7 +46,7 @@ class RouteTransitionFactory {
     // Default transition if source route is not defined
     'default': {
       'default': PageTransitions.fadeTransition,
-    }
+    },
   };
 
   /// Get the appropriate transition between routes
@@ -57,7 +57,7 @@ class RouteTransitionFactory {
   ) {
     // Get source route (previous route) and destination route (current route)
     final String? sourceRoute = state.extra is Map
-        ? (state.extra as Map)['previousRoute'] as String?
+        ? (state.extra! as Map)['previousRoute'] as String?
         : null;
     final String destinationRoute = state.matchedLocation;
 

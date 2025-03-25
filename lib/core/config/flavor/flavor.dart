@@ -3,25 +3,22 @@ import 'package:base_project_bloc/core/utils/log_util.dart';
 enum FlavorType { dev, stag, prod }
 
 class FlavorValues {
-  FlavorValues({
-    required this.baseImgGuideUrl,
-    required this.fireBaseName,
+  const FlavorValues({
     required this.baseUrl,
+    // Add other flavor specific values here
   });
 
   final String baseUrl;
-  final String baseImgGuideUrl;
-  final String fireBaseName;
-//Add other flavor specific values, e.g database name
+
+  // Removing this method since FlavorConfig.flavor should be used directly
+  // and to avoid circular dependency issues
 }
 
 class FlavorConfig {
   static FlavorType flavor = FlavorType.dev;
   static String name = '';
-  static FlavorValues values = FlavorValues(
+  static FlavorValues values = const FlavorValues(
     baseUrl: '',
-    fireBaseName: '',
-    baseImgGuideUrl: '',
   );
 
   static bool isProduction() => flavor == FlavorType.prod;
@@ -37,8 +34,6 @@ void setFlavorDevelopment(String? baseUrl) {
   FlavorConfig.name = 'dev';
   FlavorConfig.values = FlavorValues(
     baseUrl: baseUrl ?? "",
-    fireBaseName: 'AirWater-Delivery',
-    baseImgGuideUrl: "",
   );
 }
 
@@ -47,8 +42,6 @@ void setFlavorStaging(String? baseUrl) {
   FlavorConfig.name = 'stg';
   FlavorConfig.values = FlavorValues(
     baseUrl: baseUrl ?? "",
-    fireBaseName: 'AirWater-Delivery-Staging',
-    baseImgGuideUrl: "",
   );
 }
 
@@ -58,8 +51,6 @@ void setFlavorProduction(String? baseUrl) {
   FlavorConfig.name = 'prod';
   FlavorConfig.values = FlavorValues(
     baseUrl: baseUrl ?? "",
-    fireBaseName: '',
-    baseImgGuideUrl: "",
   );
 }
 
@@ -74,7 +65,6 @@ void setFlavor(FlavorType flavor, {String? overrideBaseUrl}) {
     case FlavorType.prod:
       setFlavorProduction(overrideBaseUrl);
       break;
-    default:
-      break;
+    // Removed default case since all enum values are covered
   }
 }

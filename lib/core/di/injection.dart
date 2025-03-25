@@ -6,10 +6,11 @@ final getIt = GetIt.instance;
 
 Future<void> initializeDependencies() async {
   final prefs = await SharedPreferences.getInstance();
-  getIt.registerSingleton<SharedPreferences>(prefs);
 
-  // Theme
-  getIt.registerSingleton<ThemeCubit>(ThemeCubit(getIt()));
+  // Using cascade notation for multiple registrations
+  getIt
+    ..registerSingleton<SharedPreferences>(prefs)
+    ..registerSingleton<ThemeCubit>(ThemeCubit(getIt()));
 
   // Add other dependencies here
 }

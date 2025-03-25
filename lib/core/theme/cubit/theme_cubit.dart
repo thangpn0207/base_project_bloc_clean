@@ -10,7 +10,9 @@ class ThemeCubit extends Cubit<ThemeMode> {
 
   static ThemeMode _loadTheme(SharedPreferences prefs) {
     final String? themeString = prefs.getString(_themeKey);
-    if (themeString == null) return ThemeMode.system;
+    if (themeString == null) {
+      return ThemeMode.system;
+    }
     return ThemeMode.values.firstWhere(
       (e) => e.toString() == themeString,
       orElse: () => ThemeMode.system,

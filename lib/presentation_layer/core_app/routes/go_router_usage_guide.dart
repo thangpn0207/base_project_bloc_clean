@@ -3,7 +3,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:base_project_bloc/presentation_layer/core_app/routes/app_router.dart';
 
 class GoRouterExamples extends StatelessWidget {
   const GoRouterExamples({Key? key}) : super(key: key);
@@ -96,7 +95,8 @@ class GoRouterExamples extends StatelessWidget {
             content: const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('''
+                Text(
+                  '''
 // Inside your page widget:
 final String id = GoRouterState.of(context).pathParameters['id'] ?? '';
 
@@ -115,7 +115,9 @@ final String tab = GoRouterState.of(context).uri.queryParameters['tab'] ?? 'defa
 // Accessing extra data:
 final Map<String, dynamic>? extra = GoRouterState.of(context).extra as Map<String, dynamic>?;
 final userId = extra?['userId'];
-''', style: TextStyle(fontFamily: 'monospace')),
+''',
+                  style: TextStyle(fontFamily: 'monospace'),
+                ),
               ],
             ),
           ),
@@ -124,7 +126,8 @@ final userId = extra?['userId'];
             content: const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('''
+                Text(
+                  '''
 // In service or bloc:
 import 'package:base_project_bloc/presentation_layer/core_app/routes/app_router.dart';
 
@@ -138,7 +141,9 @@ void navigateWithParams() {
     pathParameters: {'id': '789'},
   );
 }
-''', style: TextStyle(fontFamily: 'monospace')),
+''',
+                  style: TextStyle(fontFamily: 'monospace'),
+                ),
               ],
             ),
           ),
