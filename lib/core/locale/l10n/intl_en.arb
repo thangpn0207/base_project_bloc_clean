@@ -1,1 +1,42 @@
-{}
+{
+  "appTitle": "Base Project",
+  "@appTitle": {
+    "description": "The title of the application"
+  },
+  "homeScreenTitle": "Home Screen",
+  "@homeScreenTitle": {
+    "description": "Title for the home screen"
+  },
+  "themeSettings": "Theme Settings",
+  "@themeSettings": {
+    "description": "Title for theme settings section"
+  },
+  "lightTheme": "Light Theme",
+  "@lightTheme": {
+    "description": "Light theme option"
+  },
+  "darkTheme": "Dark Theme",
+  "@darkTheme": {
+    "description": "Dark theme option"
+  },
+  "systemTheme": "System Theme",
+  "@systemTheme": {
+    "description": "System theme option"
+  },
+  "languageSettings": "Language Settings",
+  "@languageSettings": {
+    "description": "Title for language settings section"
+  },
+  "english": "English",
+  "@english": {
+    "description": "English language option"
+  },
+  "vietnamese": "Vietnamese",
+  "@vietnamese": {
+    "description": "Vietnamese language option"
+  },
+  "settingsLabel": "Settings",
+  "@settingsLabel": {
+    "description": "Label for settings"
+  }
+}

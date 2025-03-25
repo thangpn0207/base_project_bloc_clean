@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:base_project_bloc/core/observers/go_router_observer.dart';
 import 'package:base_project_bloc/core/utils/page_transitions.dart';
 import 'package:base_project_bloc/core/utils/advanced_transitions.dart';
+import 'package:base_project_bloc/presentation_layer/ui/home/home_screen.dart';
 
 // Import your screens here
 // import 'package:base_project_bloc/presentation_layer/screens/home_screen.dart';
@@ -55,11 +56,7 @@ class AppRouter {
         pageBuilder: (context, state) => PageTransitions.fadeTransition(
           context,
           state,
-          const Scaffold(
-            body: Center(
-              child: Text('Home Screen - Replace with your HomeScreen'),
-            ),
-          ),
+          const HomeScreen(),
         ),
         routes: [
           // Nested routes
