@@ -22,7 +22,7 @@ class DioManager {
       //logging interceptor
       TokenInterceptor(),
       //error interceptor
-      ErrorInterceptors(),
+      ErrorInterceptor(),
     });
     dio.interceptors.add(
       PrettyDioLogger(

@@ -1,12 +1,112 @@
 {
   "appTitle": "Dự án cơ sở",
+  "@appTitle": {
+    "description": "The title of the application"
+  },
   "homeScreenTitle": "Màn hình chính",
+  "@homeScreenTitle": {
+    "description": "Title for the home screen"
+  },
   "themeSettings": "Cài đặt giao diện",
+  "@themeSettings": {
+    "description": "Title for theme settings section"
+  },
   "lightTheme": "Giao diện sáng",
+  "@lightTheme": {
+    "description": "Light theme option"
+  },
   "darkTheme": "Giao diện tối",
+  "@darkTheme": {
+    "description": "Dark theme option"
+  },
   "systemTheme": "Giao diện hệ thống",
+  "@systemTheme": {
+    "description": "System theme option"
+  },
   "languageSettings": "Cài đặt ngôn ngữ",
+  "@languageSettings": {
+    "description": "Title for language settings section"
+  },
   "english": "Tiếng Anh",
+  "@english": {
+    "description": "English language option"
+  },
   "vietnamese": "Tiếng Việt",
-  "settingsLabel": "Cài đặt"
+  "@vietnamese": {
+    "description": "Vietnamese language option"
+  },
+  "settingsLabel": "Cài đặt",
+  "@settingsLabel": {
+    "description": "Label for settings"
+  },
+  "welcomeMessage": "Chào mừng đến với {appName}!",
+  "@welcomeMessage": {
+    "description": "Welcome message with app name",
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "errorMessage": "Đã xảy ra lỗi: {error}",
+  "@errorMessage": {
+    "description": "Error message with error details",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "successMessage": "Thao tác hoàn tất thành công",
+  "@successMessage": {
+    "description": "Success message"
+  },
+  "loadingMessage": "Đang tải...",
+  "@loadingMessage": {
+    "description": "Loading message"
+  },
+  "retryButton": "Thử lại",
+  "@retryButton": {
+    "description": "Retry button text"
+  },
+  "cancelButton": "Hủy",
+  "@cancelButton": {
+    "description": "Cancel button text"
+  },
+  "saveButton": "Lưu",
+  "@saveButton": {
+    "description": "Save button text"
+  },
+  "deleteButton": "Xóa",
+  "@deleteButton": {
+    "description": "Delete button text"
+  },
+  "editButton": "Sửa",
+  "@editButton": {
+    "description": "Edit button text"
+  },
+  "searchHint": "Tìm kiếm...",
+  "@searchHint": {
+    "description": "Search field hint text"
+  },
+  "noResultsFound": "Không tìm thấy kết quả",
+  "@noResultsFound": {
+    "description": "Message shown when no search results are found"
+  },
+  "networkError": "Lỗi kết nối mạng",
+  "@networkError": {
+    "description": "Message shown when a network error occurs"
+  },
+  "serverError": "Lỗi máy chủ",
+  "@serverError": {
+    "description": "Message shown when a server error occurs"
+  },
+  "connectionError": "Lỗi kết nối",
+  "@connectionError": {
+    "description": "Message shown when a connection error occurs"
+  },
+  "timeoutError": "Yêu cầu đã hết thời gian chờ",
+  "@timeoutError": {
+    "description": "Message shown when a request times out"
+  }
 } 

@@ -1,95 +1,159 @@
+// ignore_for_file: cascade_invocations, avoid_positional_boolean_parameters, use_setters_to_change_properties
+
 import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 /// Enhanced logging utility that only logs in debug mode
-class LoggerUtil extends Logger {
-  LogPrinter? printer;
-  Level? level;
-
-  /// Controls whether logging is enabled globally
+class LogUtil {
+  static final Map<String, Logger> _loggers = {};
+  static bool _isInitialized = false;
   static bool _isEnabled = true;
 
-  /// Current build mode (debug, profile, release)
-  static final bool _isDebugMode = kDebugMode;
-  static final bool _isReleaseMode = kReleaseMode;
-  static final bool _isProfileMode = kProfileMode;
+  /// Initialize the logging system
+  static void init() {
+    if (_isInitialized) {
+      return;
+    }
 
-  LoggerUtil({
-    required this.printer,
-    required this.level,
-  }) : super(
-          printer: printer,
-          level: level,
-        );
+    // Configure the default logger with a simple printer
+    Logger.level = Level.debug;
+    _isInitialized = true;
+  }
 
   /// Enable or disable all logging
   static void setLoggingEnabled(bool enabled) {
     _isEnabled = enabled;
   }
 
-  /// Returns whether logs should be shown based on current settings
-  static bool get shouldShowLogs => _isEnabled && _isDebugMode;
+  /// Get a logger instance for the given name
+  static Logger getLogger(String name) {
+    if (!_isInitialized) {
+      init();
+    }
+    return _loggers.putIfAbsent(name, () {
+      return Logger(
+        printer: SimplePrinter(
+          colors: true,
+          printTime: true,
+        ),
+      );
+    });
+  }
 
-  /// Current build mode as string
+  /// Log a debug message
+  static void d(
+    String message, {
+    String? tag,
+    Object? error,
+    StackTrace? stackTrace,
+  }) {
+    if (!kDebugMode || !_isEnabled) {
+      return;
+    }
+    final logger = getLogger(tag ?? 'App');
+    logger.d(message);
+    if (error != null) {
+      logger.e('Error: $error');
+    }
+    if (stackTrace != null) {
+      logger.e('Stack trace: $stackTrace');
+    }
+  }
+
+  /// Log an info message
+  static void i(
+    String message, {
+    String? tag,
+    Object? error,
+    StackTrace? stackTrace,
+  }) {
+    if (!kDebugMode || !_isEnabled) {
+      return;
+    }
+    final logger = getLogger(tag ?? 'App');
+    logger.i(message);
+    if (error != null) {
+      logger.e('Error: $error');
+    }
+    if (stackTrace != null) {
+      logger.e('Stack trace: $stackTrace');
+    }
+  }
+
+  /// Log a warning message
+  static void w(
+    String message, {
+    String? tag,
+    Object? error,
+    StackTrace? stackTrace,
+  }) {
+    if (!kDebugMode || !_isEnabled) {
+      return;
+    }
+    final logger = getLogger(tag ?? 'App');
+    logger.w(message);
+    if (error != null) {
+      logger.e('Error: $error');
+    }
+    if (stackTrace != null) {
+      logger.e('Stack trace: $stackTrace');
+    }
+  }
+
+  /// Log an error message
+  static void e(
+    String message, {
+    String? tag,
+    Object? error,
+    StackTrace? stackTrace,
+  }) {
+    if (!kDebugMode || !_isEnabled) {
+      return;
+    }
+    final logger = getLogger(tag ?? 'App');
+    logger.e(message);
+    if (error != null) {
+      logger.e('Error: $error');
+    }
+    if (stackTrace != null) {
+      logger.e('Stack trace: $stackTrace');
+    }
+  }
+
+  /// Log a navigation event
+  static void nav(String message, {String? tag}) {
+    if (!kDebugMode || !_isEnabled) {
+      return;
+    }
+    final logger = getLogger(tag ?? 'Navigation');
+    logger.i('[NAV] $message');
+  }
+
+  /// Get current build mode
   static String get currentBuildMode {
-    if (_isDebugMode) return 'DEBUG';
-    if (_isProfileMode) return 'PROFILE';
-    if (_isReleaseMode) return 'RELEASE';
+    if (kDebugMode) {
+      return 'DEBUG';
+    }
+    if (kProfileMode) {
+      return 'PROFILE';
+    }
+    if (kReleaseMode) {
+      return 'RELEASE';
+    }
     return 'UNKNOWN';
   }
 
-  void error(dynamic message, [dynamic error, StackTrace? stackTrace]) {
-    if (shouldShowLogs) {
-      e('[ERROR] $message', error, stackTrace);
-    }
-  }
-
-  void warn(dynamic message, [dynamic error, StackTrace? stackTrace]) {
-    if (shouldShowLogs) {
-      w('[WARN] $message', error, stackTrace);
-    }
-  }
-
-  void info(dynamic message) {
-    if (shouldShowLogs) {
-      i('[INFO] $message');
-    }
-  }
-
-  void debug(dynamic message, [dynamic error, StackTrace? stackTrace]) {
-    if (shouldShowLogs) {
-      d('[DEBUG] $message', error, stackTrace);
-    }
-  }
-
-  void verbose(dynamic message) {
-    if (shouldShowLogs) {
-      v('[VERBOSE]\n$message');
-    }
-  }
-
-  /// Log navigation events from GoRouter
-  void nav(dynamic message) {
-    if (shouldShowLogs) {
-      i('[NAVIGATION] $message');
-    }
-  }
-
-  static Level logLevel() {
-    if (kReleaseMode) {
-      return Level.nothing;
-    }
-    return Level.verbose;
+  /// Create a PrettyDioLogger instance for Dio
+  static PrettyDioLogger createDioLogger() {
+    return PrettyDioLogger(
+      requestHeader: true,
+      requestBody: true,
+      responseHeader: true,
+      responseBody: true,
+      error: true,
+      compact: true,
+      maxWidth: 90,
+    );
   }
 }
-
-/// Global logger instance for use throughout the app
-final LoggerUtil logUtil = LoggerUtil(
-  printer: PrettyPrinter(
-    methodCount: 0,
-    lineLength: 150,
-    printTime: true,
-    printEmojis: true,
-  ),
-  level: LoggerUtil.logLevel(),
-);

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:base_project_bloc/core/utils/log_util.dart';
 
@@ -52,7 +53,7 @@ class GoRouterObserver extends NavigatorObserver {
 
   void _logEvent(String event, String message, Route<dynamic>? route) {
     // Check if logging is enabled and we're in debug mode
-    if (!enableLogger || !LoggerUtil.shouldShowLogs) {
+    if (!enableLogger || !kDebugMode) {
       return;
     }
 
@@ -70,8 +71,8 @@ class GoRouterObserver extends NavigatorObserver {
     final extra = state?.extra != null ? 'Extra: ${state!.extra}' : '';
 
     // Build a more structured log message
-    final StringBuilder sb = StringBuilder();
-    sb.appendLine('🧭 GoRouter [$event] $message');
+    final StringBuilder sb = StringBuilder()
+      ..appendLine('🧭 GoRouter [$event] $message');
 
     if (location != null) {
       sb.appendLine('📍 Location: $location');
@@ -92,7 +93,7 @@ class GoRouterObserver extends NavigatorObserver {
     sb.appendLine('-----------------------------------');
 
     // Use our enhanced logger
-    logUtil.nav(sb.toString());
+    LogUtil.nav(sb.toString(), tag: 'GoRouter');
   }
 
   GoRouterState? _extractGoRouterState(Route<dynamic>? route) {

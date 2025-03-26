@@ -109,13 +109,13 @@ class PageTransitions {
       key: state.pageKey,
       child: child,
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        final scaleAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+        final scaleAnimation = Tween<double>(begin: 0, end: 1).animate(
           CurvedAnimation(
             parent: animation,
             curve: Curves.fastOutSlowIn,
           ),
         );
-        final rotateAnimation = Tween<double>(begin: 0.5, end: 0.0).animate(
+        final rotateAnimation = Tween<double>(begin: 0.5, end: 0).animate(
           CurvedAnimation(
             parent: animation,
             curve: Curves.fastOutSlowIn,
